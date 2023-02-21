@@ -5,7 +5,7 @@
       
       <h:head>
       	<meta name="viewport" content="width=device-width, initial-scale=1" />
-      
+      	<title>Login</title>
       	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
       </h:head>
       
@@ -20,13 +20,13 @@
       		<p:graphicImage name="imgs/login.png" styleClass="imgLogin"/>
       			<p:panelGrid id="pnlGridLogin" columns="1" columnClasses="ui-md-12" layout="grid" styleClass="ui-panelgrid-blank">
 	      				<p:outputLabel value="Usuario: " styleClass="colorText lblFloat" for="txtUser"></p:outputLabel>
-	      				<p:inputText id="txtUser" value="#{log.user}" required="true" requiredMessage="Necesita poner un usuario."></p:inputText>
+	      				<p:inputText id="txtUser" value="#{loginController.user}" required="true" requiredMessage="Necesita poner un usuario."></p:inputText>
 	      			
 	      				<p:outputLabel value="Password: " styleClass="colorText lblFloat" for="txtPass"></p:outputLabel>
-	      				<p:password id="txtPass" value="#{log.password}" required="true" requiredMessage="La contraseña es necesaria."></p:password>
+	      				<p:password id="txtPass" value="#{loginController.password}" required="true" requiredMessage="La contraseña es necesaria."></p:password>
 	      			
 	      				<p:outputLabel></p:outputLabel>
-	      				<p:commandButton value="Enviar" action="#{log.mostrarDatos()}" update="pnlGridLogin, growl"></p:commandButton>
+	      				<p:commandButton value="Enviar" action="#{loginController.mostrarDatos()}" update="pnlGridLogin, growl"></p:commandButton>
       			</p:panelGrid>
       		</p:panel>
       	</h:form>

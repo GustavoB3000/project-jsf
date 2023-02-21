@@ -4,15 +4,18 @@ import java.io.IOException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
+import com.gustavo.projectjsf.dto.UsuarioDTO;
 
 
 /**
  * 
  * @author Calistos
  */
-@ManagedBean(name = "log")
+@ManagedBean
 public class LoginController {
 	/**
 	 * Usuario.
@@ -22,11 +25,28 @@ public class LoginController {
 	 * Contraseña.
 	 */
 	private String password;
+	
+	/**
+	 * Bean que mantiene la info en session.
+	 */
+	@ManagedProperty("#{sessionController}")
+	private SessionController sessionController;
 
 	public void mostrarDatos() {
 		
 		if (password.equals("1234") && user.equals("Axel")) {
 			try {
+				//Se crea un usuario para la session.
+				UsuarioDTO U1 = new UsuarioDTO();
+				
+				//Se vinculan los datos correctos a los atributos correspondientes del usuario.
+				U1.setUser(this.user);
+				U1.setPassword(this.password);
+				
+				//Finalmente se le da la session al usuario.
+				this.sessionController.setUsuarioDTO(null);
+				
+				//Redireccionamiento a otra pagina.
 				this.redireccionar("nuevaPagina.xhtml");
 			} catch (IOException e) {
 				FacesContext.getCurrentInstance().addMessage("formLogin:txtUser",
@@ -73,5 +93,19 @@ public class LoginController {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the sessionController
+	 */
+	public SessionController getSessionController() {
+		return sessionController;
+	}
+
+	/**
+	 * @param sessionController the sessionController to set
+	 */
+	public void setSessionController(SessionController sessionController) {
+		this.sessionController = sessionController;
 	}
 }

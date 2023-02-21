@@ -90,6 +90,14 @@ public class EmpleadoService {
 		empleados.add(empleadoYoutube);
 		empleados.add(empleadoLinkedin);
 		empleados.add(empleadoMercadoLibre);
+		empleados.add(empleadoIBM);
+		empleados.add(empleadoGoogle);
+		empleados.add(empleadoMeta);
+		empleados.add(empleadoInstagram);
+		empleados.add(empleadoNetflix);
+		empleados.add(empleadoYoutube);
+		empleados.add(empleadoLinkedin);
+		empleados.add(empleadoMercadoLibre);
 
 		// Retorno de la lista:
 		return empleados;

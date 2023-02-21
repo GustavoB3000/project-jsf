@@ -1,35 +1,69 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-      
-      <h:head>
-      	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
-      </h:head>
-      
-      <h:body>
-      	Bienvenido
-      		<h:dataTable id="tblEmpleados" var="empleado" value="#{principal.empleados}" headerClass="headerTable" rowClasses="rowTable rowTableLine">
-      			<h:column>
-      				<f:facet name="header">Nombre</f:facet>
-      				<h:outputText value="#{empleado.nombre}"></h:outputText>
-      			</h:column>
-      						
-      			<h:column>
-      				<f:facet name="header">Apellido</f:facet>
-      				<h:outputText value="#{empleado.apellido}"></h:outputText>
-      			</h:column>
-      			
-      			<h:column>
-      				<f:facet name="header">Puesto</f:facet>
-      				<h:outputText value="#{empleado.puesto}"></h:outputText>
-      			</h:column>
-      			
-      			<h:column>
-      				<f:facet name="header">Estatus</f:facet>
-      				<h:outputText value="Habilitado" rendered="#{empleado.estatus}"></h:outputText>
-      				<h:outputText value="Deshabilitado" rendered="#{!empleado.estatus}"></h:outputText>
-      			</h:column>	
-      		</h:dataTable>
-      </h:body>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Nueva Pagina</title>
+<!-- 	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet> -->
+</h:head>
+
+<h:body>
+	<p:outputLabel value="Bienvenido #{sessionController.usuarioDTO.user} a la nueva pagina."></p:outputLabel>
+
+	<h:form>
+	<p:commandButton value="Cerrar session" action="#{sessionClosedController.cerrarSession}"></p:commandButton>
+		<p:dataTable id="tblEmpleados" var="empleado" reflow="true"
+			value="#{principal.empleados}" headerClass="headerTable"
+			rowClasses="rowTable rowTableLine" paginatorPosition="both"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {Exporters} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+			rowsPerPageTemplate="3,5,{ShowAll|'All'}" paginator="true"
+			emptyMessage="No se encontraron registros"
+			filteredValue="#{principal.empleadosFiltrados}">
+		
+			<p:column headerText="Nombre" filterBy="#{empleado.nombre}"
+				filterMatchMode="contains" sortBy="#{empleado.nombre}">
+				<h:outputText value="#{empleado.nombre}" />
+			</p:column>
+
+			<p:column headerText="Apellido" filterBy="#{empleado.apellido}"
+				filterMatchMode="contains" sortBy="#{empleado.apellido}">
+				<h:outputText value="#{empleado.apellido}" />
+			</p:column>
+
+			<p:column headerText="Puesto" filterBy="#{empleado.puesto}"
+				filterMatchMode="contains" sortBy="#{empleado.puesto}">
+				<h:outputText value="#{empleado.puesto}" />
+			</p:column>
+
+			<p:column headerText="Estatus">
+				<h:outputText value="Habilitado" rendered="#{empleado.estatus}"></h:outputText>
+				<h:outputText value="Deshabilitado" rendered="#{!empleado.estatus}"></h:outputText>
+			</p:column>
+		
+			<f:facet name="{Exporters}">
+				<div style="float: right; padding-top: 5px;">
+					<h:commandLink>
+						<p:graphicImage name="imgs/xls.png" width="24"></p:graphicImage>
+						<p:dataExporter type="xls" target="tblEmpleados" fileName="empleados"></p:dataExporter>
+					</h:commandLink>
+					
+					<h:commandLink>
+						<p:graphicImage name="imgs/pdf.png" width="24"></p:graphicImage>
+						<p:dataExporter type="pdf" target="tblEmpleados" fileName="empleados"></p:dataExporter>
+					</h:commandLink>
+					
+					<h:commandLink>
+						<p:graphicImage name="imgs/csv.png" width="24"></p:graphicImage>
+						<p:dataExporter type="csv" target="tblEmpleados" fileName="empleados"></p:dataExporter>
+					</h:commandLink>
+				</div>
+			</f:facet>
+		</p:dataTable>
+		
+	</h:form>
+
+</h:body>
 </html>
