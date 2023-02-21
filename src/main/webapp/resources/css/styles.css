@@ -1,3 +1,20 @@
 .colorText{
 	color : red;
 }
+
+.headerTable{
+	text-align: center;
+	background-color: grey;
+	padding: 1em;
+	border: 1px solid #000000;
+}
+
+.rowTable{
+	padding: 2em;
+	text-align: center;
+}
+
+.rowTableLine{
+	padding: 2em;
+	background-color: #c0c0c0;
+}

@@ -3,9 +3,32 @@
       xmlns:h="http://java.sun.com/jsf/html">
       
       <h:head>
+      	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
       </h:head>
       
       <h:body>
       	Bienvenido
+      		<h:dataTable id="tblEmpleados" var="empleado" value="#{principal.empleados}" headerClass="headerTable" rowClasses="rowTable rowTableLine">
+      			<h:column>
+      				<f:facet name="header">Nombre</f:facet>
+      				<h:outputText value="#{empleado.nombre}"></h:outputText>
+      			</h:column>
+      						
+      			<h:column>
+      				<f:facet name="header">Apellido</f:facet>
+      				<h:outputText value="#{empleado.apellido}"></h:outputText>
+      			</h:column>
+      			
+      			<h:column>
+      				<f:facet name="header">Puesto</f:facet>
+      				<h:outputText value="#{empleado.puesto}"></h:outputText>
+      			</h:column>
+      			
+      			<h:column>
+      				<f:facet name="header">Estatus</f:facet>
+      				<h:outputText value="Habilitado" rendered="#{empleado.estatus}"></h:outputText>
+      				<h:outputText value="Deshabilitado" rendered="#{!empleado.estatus}"></h:outputText>
+      			</h:column>	
+      		</h:dataTable>
       </h:body>
 </html>

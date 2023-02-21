@@ -1,3 +1,5 @@
+package com.gustavo.projectjsf.controllers;
+
 import java.io.IOException;
 
 import javax.faces.application.FacesMessage;
@@ -5,17 +7,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-/**
- * 
- */
 
 /**
  * 
  * @author Calistos
  */
 @ManagedBean(name = "log")
-public class loginController {
-
+public class LoginController {
 	/**
 	 * Usuario.
 	 */
