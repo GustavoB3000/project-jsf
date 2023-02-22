@@ -41,6 +41,4 @@ public class SessionController {
 	public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
 		this.usuarioDTO = usuarioDTO;
 	}
-	
-	
 }
